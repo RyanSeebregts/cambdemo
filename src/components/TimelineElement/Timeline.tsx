@@ -9,6 +9,19 @@ import classes from './Timeline.module.css'
 import TimelineControls from '../TimelineControls/TimelineControls';
 import elementClasses from './TimelineElement.module.css'
 import { timeToPixel } from '../../util/timeConversionUtil';
+
+import dynamic from 'next/dynamic';
+
+const DynamicTimelineElement = dynamic(
+  () => import('./TimelineElement'),
+  { ssr: false }
+);
+
+const DynamicScrubbingElement = dynamic(
+    () => import('./Scrubber'),
+    { ssr: false }
+  );
+
 const checkIfAudioNotPlaying = (id: string, playingAudio: AudioFileType[]) => {
     return playingAudio.find((file) => file.id === id) === undefined;
 }
@@ -185,10 +198,10 @@ export default function Timeline() {
 
             <div className={classes.timelineContainer}>
                 <div className={classes.timeline} style={{width: timeToPixel(1500)}}>
-                    <Scrubber time={time} setTime={setTimeHandler}/>
+                    <DynamicScrubbingElement time={time} setTime={setTimeHandler}/>
                     {
                         audioFiles.map((a, key) =>
-                                <TimelineElement deleteTrack={deleteTrackHandler} firstElement={key === 0} key={key} index={key} name={a.name} length={a.length} start={a.start} color={a.color} id={a.id} setStart={handleSetAudioFileStart} />
+                                <DynamicTimelineElement deleteTrack={deleteTrackHandler} firstElement={key === 0} key={key} index={key} name={a.name} length={a.length} start={a.start} color={a.color} id={a.id} setStart={handleSetAudioFileStart} />
                         )
                     }
                     {
