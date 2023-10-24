@@ -1,0 +1,12 @@
+.timelineContainer {
+    width: 100%;
+    overflow: visible;
+    overflow-x: auto;
+    padding-bottom: 20px;
+}
+
+.timelineContainer {
+    position: relative;
+    overflow: visible;
+    overflow-x: auto;
+}

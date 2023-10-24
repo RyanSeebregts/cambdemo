@@ -9,19 +9,26 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "jquery": "^3.7.1",
+    "jquery-ui": "^1.13.2",
+    "next": "13.5.6",
     "react": "^18",
     "react-dom": "^18",
-    "next": "13.5.6"
+    "react-icons": "^4.11.0",
+    "uuid": "^9.0.1"
   },
   "devDependencies": {
-    "typescript": "^5",
+    "@types/jquery": "^3.5.25",
+    "@types/jqueryui": "^1.12.19",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
+    "@types/uuid": "^9.0.6",
     "autoprefixer": "^10",
+    "eslint": "^8",
+    "eslint-config-next": "13.5.6",
     "postcss": "^8",
     "tailwindcss": "^3",
-    "eslint": "^8",
-    "eslint-config-next": "13.5.6"
+    "typescript": "^5"
   }
 }
