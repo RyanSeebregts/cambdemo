@@ -160,6 +160,22 @@ export default function Timeline() {
         }
         return new Array(3 - audioFiles.length).fill(0)
     }, [audioFiles])
+
+    const deleteTrackHandler = useCallback((id: string) => {
+        const newAudioFiles = [...audioFiles];
+        const index = newAudioFiles.findIndex((file) => file.id === id);
+        if(index < 0) return;
+        newAudioFiles.splice(index, 1);
+        setAudioFiles(newAudioFiles);
+        
+        const newAudioFilesPlaying = [...audioFilesPlaying];
+        const indexPlaying = newAudioFilesPlaying.findIndex((file) => file.id === id);
+        if(indexPlaying < 0) return;
+        newAudioFilesPlaying[indexPlaying].audio.pause();
+        newAudioFilesPlaying.splice(indexPlaying, 1);
+        setAudioFilePlaying(newAudioFilesPlaying);
+
+    }, [audioFiles, setAudioFiles, setAudioFilePlaying, audioFilesPlaying])
     
     return (
         <>
@@ -172,7 +188,7 @@ export default function Timeline() {
                     <Scrubber time={time} setTime={setTimeHandler}/>
                     {
                         audioFiles.map((a, key) =>
-                                <TimelineElement firstElement={key === 0} key={key} index={key} name={a.name} length={a.length} start={a.start} color={a.color} id={a.id} setStart={handleSetAudioFileStart} />
+                                <TimelineElement deleteTrack={deleteTrackHandler} firstElement={key === 0} key={key} index={key} name={a.name} length={a.length} start={a.start} color={a.color} id={a.id} setStart={handleSetAudioFileStart} />
                         )
                     }
                     {

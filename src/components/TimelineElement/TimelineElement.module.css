@@ -38,3 +38,22 @@
 .element:hover .info{
     display: flex;
 }
+
+.delete {
+    position: absolute;
+    right: 0px;
+    top: 0px;
+    width: 40px;
+    height: 100%;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    opacity: 0;
+    font-size: 20px;
+}
+
+.element:hover .delete{
+    opacity: 1;
+}
