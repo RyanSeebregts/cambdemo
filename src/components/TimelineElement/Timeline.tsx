@@ -127,14 +127,6 @@ export default function Timeline() {
 
     }, [audioFiles, setAudioFiles, setAudioFilePlaying, audioFilesPlaying])
 
-    //Just a array of empty elements to fill the timeline with so there are always 3 rows on the timeline
-    const emptyAudioTimeline = useMemo(() => {
-        if(audioFiles.length > 2) {
-            return []
-        }
-        return new Array(3 - audioFiles.length).fill(0)
-    }, [audioFiles])
-
     //this function manages which tracks are playing. It is called in the intervals decided by the useEffect below
     const setupPlayArray = useCallback(() => {
         const newAudioFilesPlaying:AudioFileType[] = audioFilesPlaying
@@ -216,12 +208,6 @@ export default function Timeline() {
                     {
                         audioFiles.map((a, key) =>
                                 <DynamicTimelineElement deleteTrack={deleteTrackHandler} firstElement={key === 0} key={key} index={key} name={a.name} length={a.length} start={a.start} color={a.color} id={a.id} setStart={handleSetAudioFileStart} />
-                        )
-                    }
-                    {
-                        emptyAudioTimeline.map((_, key) => 
-                                <div className={elementClasses.container} key={key} style={{background: (key + audioFiles.length % 2) !== 1 ? "#3f3f3f" : undefined}} />
-
                         )
                     }
                 </div>
