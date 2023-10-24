@@ -1,6 +1,8 @@
 import { baseAudio } from '../../util/data';
 import classes from './TrackSelector.module.css'
 
+//The track selector holds the buttons which add audio tracks into the timeline
+//Currently there are only 4 tracks (piano, drums, guitar and trumpet)
 interface OwnProps {
     addTrack: (track: string) => void;
 }
