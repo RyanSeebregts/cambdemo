@@ -32,7 +32,7 @@ export default function TimelineElement(props: OwnProps) {
 
     const deleteTrackHandler = useCallback(() => {
         props.deleteTrack(props.id)
-    }, [props.id])
+    }, [props.id, props.deleteTrack])
       
     return (
         <div className={classes.container} style={{background: props.index % 2 !== 1 ? "#585858" : undefined}}>
